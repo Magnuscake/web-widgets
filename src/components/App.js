@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import Accordion from "./Accordion";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
+import Translate from "./Translate";
+import Header from "./Header";
+import Route from "./Route";
 
 const items = [
   {
@@ -11,7 +14,7 @@ const items = [
   },
   {
     title: "Why use React?",
-    content: "You are right. Just use Vue. I hear its much better.",
+    content: "Tbh I don't know. React is cool, but you can use Vue too :)",
   },
   {
     title: "What about Angular?",
@@ -39,11 +42,27 @@ export default () => {
 
   return (
     <div>
-      <Dropdown
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
-      />
+      <Header />
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+
+      <Route path="/search">
+        <Search />
+      </Route>
+
+      <Route path="/dropdown">
+        <Dropdown
+          label="Select a color"
+          selected={selected}
+          onSelectedChange={setSelected}
+          options={options}
+        />
+      </Route>
+
+      <Route path="/translate">
+        <Translate options={options} />
+      </Route>
     </div>
   );
 };
